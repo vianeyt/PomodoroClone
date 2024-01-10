@@ -3,7 +3,8 @@ const timer = {
     pomodoro: 25,
     shortBreak: 5,
     longBreak: 15,
-    longBreakInterval: 4
+    longBreakInterval: 4,
+    session: 0,
 
 };
 
@@ -64,6 +65,8 @@ function startTimer(){
     let { total } = timer.remainingTime;
     const endTime = Date.parse(new Date()) + total * 1000;
 
+    if(timer.mode === 'pomodoro') timer.session++; //increments the sessions count at the start of each pomodoro session
+
     mainButton.dataset.action = 'stop';
     mainButton.textContent = 'stop';
     mainButton.classList.add('active');
@@ -75,6 +78,20 @@ function startTimer(){
         total = timer.remainingTime.total;
         if (total <= 0){
             clearInterval(interval);
+
+            switch (timer.mode) { //depending on the value of timer.mode we will either go on a long brea or short break
+                case 'pomodoro':
+                    if(timer.sessions % timer.longBreakInterval === 0){
+                        switchMode('longBreak');
+                    } else {
+                        switchMode('shortBreak');
+                    }
+                    break;
+                default:
+                //The default case is executed if a break session is ending which causes a new pomodoro session to begin.
+                    switchMode('pomodoro');
+            }
+            startTimer();
         }
     }, 1000);
 }
