@@ -43,6 +43,7 @@ function switchMode(mode){
     document.querySelectorAll('button[data-mode]').forEach(e => e.classList.remove('active'));
     document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
     document.body.style.backgroundColor = `var(--${mode})`;
+    document.getElementById('js-progress').setAttribute('max',timer.remainingTime.total);
 
     updateClock();
 }
@@ -113,6 +114,9 @@ function updateClock(){
 
     min.textContent = minutes;
     sec.textContent = seconds;
+
+    const progress = document.getElementById('js-progress');
+    progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
 }
 
 document.addEventListener('DOMContentLoaded',() =>{
