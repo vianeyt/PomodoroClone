@@ -126,5 +126,21 @@ function updateClock(){
 }
 
 document.addEventListener('DOMContentLoaded',() =>{
+    //Checks if browser supports notifications
+    if('Notification' in window){
+        // If notifications are allowed but permission to give notifications has NOT been allowed, ask for permission
+        if(Notification.permission !== 'granted' && Notification.permission !== 'denied'){
+            //ask user for permission
+            Notification.requestPermission().then(function(permission){
+                // if permission granted
+                if(permission === 'granted'){
+                    //create new notification
+                    new Notification(
+                        `I'll let you know when your next session begins!`
+                    );
+                }
+            });
+        }
+    }
     switchMode('pomodoro');
 });
