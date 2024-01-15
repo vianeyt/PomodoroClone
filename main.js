@@ -10,8 +10,10 @@ const timer = {
 
 let interval;
 
+const buttonSound = new Audio('button-sound.mp3');
 const mainButton = document.getElementById('js-btn');
 mainButton.addEventListener('click',() => {
+    buttonSound.play();
     const { action } = mainButton.dataset;
     if (action === 'start') {
         startTimer();
@@ -92,6 +94,7 @@ function startTimer(){
                 //The default case is executed if a break session is ending which causes a new pomodoro session to begin.
                     switchMode('pomodoro');
             }
+            document.querySelector(`[data-sound="${timer.mode}"]`).play(); 
             startTimer();
         }
     }, 1000);
