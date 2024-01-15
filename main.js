@@ -94,6 +94,10 @@ function startTimer(){
                 //The default case is executed if a break session is ending which causes a new pomodoro session to begin.
                     switchMode('pomodoro');
             }
+            if (Notification.permission === 'granted'){
+                const text = timer.mode === 'pomodoro' ? 'Keep working!' : 'Take a break!';
+                new Notification(text);
+            }
             document.querySelector(`[data-sound="${timer.mode}"]`).play(); 
             startTimer();
         }
