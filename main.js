@@ -1,7 +1,7 @@
 // will define the time we want for the timer
 const timer = { 
     pomodoro: 25,
-    shortBreak: 1,
+    shortBreak: 5,
     longBreak: 15,
     longBreakInterval: 4,
     session: 0,

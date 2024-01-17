@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Pomodoro Clock Demo</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css">
   </head>
   <body>
     <main class="app">
@@ -22,6 +23,10 @@
 
         <div class="progress-bar"></div>
           <div class="timer">
+            <div id="feh-pomodoro">
+              <div id="feh-pomodoro-overlay"></div>
+              <span class="btn-icon" id="feh-toggle-settings"><i class="fa fa-gear"></i></span>
+            </div>
             <div class="button-group mode-buttons" id="js-mode-buttons">
               <button
                 data-mode="pomodoro"
