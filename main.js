@@ -1,7 +1,7 @@
 // will define the time we want for the timer
 const timer = { 
     pomodoro: 25,
-    shortBreak: 5,
+    shortBreak: 1,
     longBreak: 15,
     longBreakInterval: 4,
     session: 0,
@@ -12,43 +12,49 @@ const timer = {
 // circle variables
 const semicircles = document.querySelectorAll('.semicircle');
 
-//input
-const hr = 0;
-const min = 0;
-const sec = 0;
+// //input
+// const hr = 0;
+// const min = 0;
+// const sec = 0;
 
-const hours = hr * 3600000;
-const minutes = min * 60000;
-const seconds = sec * 1000;
-const setTime = hours + minutes + seconds;
-const starTime = Date.now();
-const futureTime = starTime + setTime;
+// const hours = hr * 3600000;
+// const minutes = min * 60000;
+// const seconds = sec * 1000;
+// const setTime = hours + minutes + seconds;
+// const starTime = Date.now();
+// const futureTime = starTime + setTime;
 
 
-const timerLoop = setInterval(countDownTimer);
-countDownTimer();
+// const timerLoop = setInterval(countDownTimer);
+// countDownTimer();
 
-function countDownTimer(){
-    const currentTime = Date.now();
-    const remainingTime = futureTime - currentTime;
-    const angle = (remainingTime / setTime) * 360;
-    //progress indicator
-    if(angle > 180){
-        semicircles[2].style.display = 'none';
-        semicircles[0].style.transform = 'rotate(180deg)';
-        semicircles[1].style.transform = `rotate(${angle}deg)`;
-    } else {
-        semicircles[2].style.display = 'block';
-        semicircles[0].style.transform = 'rotate(180deg)';
-        semicircles[1].style.transform = `rotate(${angle}deg)`;
-    }
-    // timer
+// function countDownTimer(){
+//     const currentTime = Date.now();
+//     const remainingTime = futureTime - currentTime;
+//     const angle = (remainingTime / setTime) * 360;
+//     //progress indicator
+//     if(angle > 180){
+//         semicircles[2].style.display = 'none';
+//         semicircles[0].style.transform = 'rotate(180deg)';
+//         semicircles[1].style.transform = `rotate(${angle}deg)`;
+//     } else {
+//         semicircles[2].style.display = 'block';
+//         semicircles[0].style.transform = `rotate(${angle}deg)`;
+//         semicircles[1].style.transform = `rotate(${angle}deg)`;
+//     }
+//     // timer
 
-    // 5sec-condition
+//     // 5sec-condition
 
-    //end
-}
-//
+//     //end
+//     if(remainingTime < 0){
+//         clearInterval(timerLoop);
+//         semicircles[0].style.display = 'none'
+//         semicircles[1].style.display = 'none'
+//         semicircles[2].style.display = 'none'
+//     }
+// }
+// //
 
 let interval;
 
@@ -166,9 +172,26 @@ function updateClock(){
 
     const text = timer.mode == 'pomodoro' ? 'Get back to work!' : 'Take a break!'; //ternary operator, condition ? expression to execute if truth : expression to execute if false
     document.title = `${minutes}:${seconds} - ${text}`;
-
+// in charge of updating the progress bar upper part of page
     const progress = document.getElementById('js-progress');
     progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
+// initial progress bar ^^
+
+
+// circular progress bar 
+    // Calculate the angle based on the remaining time
+    const angle = (remainingTime.total / (timer[timer.mode] * 60)) * 360;
+
+    // Update the rotation of semicircles
+    if (angle > 180){
+        semicircles[2].style.display = 'none';
+        semicircles[0].style.transform = 'rotate(180deg)';
+        semicircles[1].style.transform = `rotate(${angle}deg)`;
+    } else {
+        semicircles[2].style.display = 'block';
+        semicircles[0].style.transform = `rotate(${angle}deg)`;
+        semicircles[1].style.transform = `rotate(${angle}deg)`;
+    }
 }
 
 document.addEventListener('DOMContentLoaded',() =>{

@@ -20,9 +20,9 @@ html {
 }
 
 :root {
-  --pomodoro: hsl(0, 25%, 40%);
-  --shortBreak: hsl(48, 23%, 40%);
-  --longBreak: hsl(105, 16%, 40%);
+  --pomodoro: hsl(354, 100%, 12%);
+  --shortBreak: hsl(12, 30%, 13%);
+  --longBreak: hsl(0, 9%, 21%);
 }
 
 .center{
@@ -66,43 +66,45 @@ progress::-webkit-progress-value {
   transform: translate(-50%, -50%);
   padding: 20px;
   text-align: center;
+  z-index: 6;
 }
 
 .clock {
   margin-top: 50px;
   margin-bottom: 30px;
-  font-size: 15rem;
+  font-size: 13rem;
   line-height: 1;
   display: flex;
   align-items: center;
   font-family: arial, sans-serif;
 }
-
+/* in charge of button design */
 .mode-button {
   font-size: 16px;
   height: 28px;
   cursor: pointer;
   box-shadow: none;
   font-weight: 300;
-  color: #fff;
+  color: black;
   border: 1px solid transparent;
   margin: 0px;
   border-radius: 4px;
   padding: 2px 12px;
   background: none;
 }
-
+/* active button design */
 .mode-button.active {
-  border-color: #fff;
+  border-color: black;
 }
 
+/* in charge of start button */
 .main-button {
   cursor: pointer;
   box-shadow: rgb(235, 235, 235) 0px 6px 0px;
   font-size: 22px;
   height: 55px;
   text-transform: uppercase;
-  color: hsl(175, 26%, 41%);
+  color: hsl(0, 0%, 0%);
   font-weight: bold;
   width: 200px;
   background-color: white;
@@ -129,13 +131,17 @@ button:focus, button:active {
 }
 
 .circle-container{
-  width: 400px;
-  height: 400px;
-  background-color: white;
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #ddd;
   border-radius: 50%;
   overflow: hidden;
   position:absolute;
   z-index: 1;
+  transform: translate(-50%, -50%);
 }
 
 .semicircle{
@@ -148,25 +154,25 @@ button:focus, button:active {
 }
 
 .semicircle:nth-child(1){
-  background-color: red;
+  background-color: #2B1B17;
   z-index: 2;
 }
 
 .semicircle:nth-child(2){
-  background-color: blue;
+  background-color: #2B1B17;
   z-index: 3;
 }
 
 .semicircle:nth-child(3){
-  background-color: white;
+  background-color: #ddd;
   z-index: 4;
   display: none;
 }
 
 .outermost-circle{
-  width: 390px;
-  height: 390px;
-  background-color: black;
+  width: 580px;
+  height: 580px;
+  background-color:white;
   border-radius: 50%;
   z-index: 5;
 
