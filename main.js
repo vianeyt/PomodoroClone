@@ -17,8 +17,10 @@ const workDurationInput = document.getElementById('work-duration');
 const restDurationInput = document.getElementById('rest-duration');
 const timerTime = document.getElementById('feh-timer-time');
 const circleProgress = document.querySelector('.circle-progress');
+const completedSessionsElement = document.getElementById('feh-completed-sessions');
 
 
+let completedSessions = 0;
 let workDuration = parseInt(workDurationInput.value) * 60;
 let restDuration = parseInt(restDurationInput.value) * 60;
 let remainingTime = workDuration;
@@ -45,39 +47,39 @@ btnCloseSettings.addEventListener('click',toggleSettings);
 document.addEventListener('keydown',toggleSettings);
 
 // work / rest settings
-workDurationInput.addEventListener('change', () => {
-    workDuration = parseInt(workDurationInput.value) * 60;
-    remainingTime = workDuration;
-    updateClock();
-});
-
-restDurationInput.addEventListener('change', () => {
-    restDuration = parseInt(restDurationInput.value) * 60;
-    remainingTime = restDuration;
-    updateClock();
-});
-
 // workDurationInput.addEventListener('change', () => {
-//     const newWorkDuration = parseInt(workDurationInput.value) * 60;
-//     timer.pomodoro = newWorkDuration / 60; // Convert back to minutes
-//     timer.remainingTime = {
-//         total: newWorkDuration,
-//         minutes: timer.pomodoro,
-//         seconds: 0,
-//     };
+//     workDuration = parseInt(workDurationInput.value) * 60;
+//     remainingTime = workDuration;
 //     updateClock();
 // });
 
 // restDurationInput.addEventListener('change', () => {
-//     const newRestDuration = parseInt(restDurationInput.value) * 60;
-//     timer.shortBreak = newRestDuration / 60; // Convert back to minutes
-//     timer.remainingTime = {
-//         total: newRestDuration,
-//         minutes: timer.shortBreak,
-//         seconds: 0,
-//     };
+//     restDuration = parseInt(restDurationInput.value) * 60;
+//     remainingTime = restDuration;
 //     updateClock();
 // });
+
+workDurationInput.addEventListener('change', () => {
+    const newWorkDuration = parseInt(workDurationInput.value) * 60;
+    timer.pomodoro = newWorkDuration / 60; // Convert back to minutes
+    timer.remainingTime = {
+        total: newWorkDuration,
+        minutes: timer.pomodoro,
+        seconds: 0,
+    };
+    updateClock();
+});
+
+restDurationInput.addEventListener('change', () => {
+    const newRestDuration = parseInt(restDurationInput.value) * 60;
+    timer.shortBreak = newRestDuration / 60; // Convert back to minutes
+    timer.remainingTime = {
+        total: newRestDuration,
+        minutes: timer.shortBreak,
+        seconds: 0,
+    };
+    updateClock();
+});
 
 
 // 
@@ -148,6 +150,8 @@ function startTimer(){
     const endTime = Date.parse(new Date()) + total * 1000;
 
     if(timer.mode === 'pomodoro') timer.session++; //increments the sessions count at the start of each pomodoro session
+    // completedSessions++;
+    // completedSessionsElement.textContent = completedSessions;
 
     mainButton.dataset.action = 'stop';
     mainButton.textContent = 'stop';
@@ -160,6 +164,8 @@ function startTimer(){
         total = timer.remainingTime.total;
         if (total <= 0){
             clearInterval(interval);
+            completedSessions++;
+            completedSessionsElement.textContent = completedSessions;
 
             switch (timer.mode) { //depending on the value of timer.mode we will either go on a long brea or short break
                 case 'pomodoro':
