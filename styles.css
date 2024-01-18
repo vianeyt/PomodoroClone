@@ -267,6 +267,7 @@ button:focus, button:active {
       transition: all 0.3s ease-in-out;
       opacity: 0;
       visibility: hidden;
+      
     }
       #feh-close-settings{
         top: -45px;
