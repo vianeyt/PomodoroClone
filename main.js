@@ -3,8 +3,7 @@ let timer = {
     pomodoro: 25,
     shortBreak: 5,
     longBreak: 15,
-    // longBreakInterval: 4,
-    longBreakInterval: 1, //testing
+    longBreakInterval: 4,
     session: 0,
     remainingTime: {
         total: 25 * 60, // Initial value for pomodoro
