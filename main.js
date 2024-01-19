@@ -13,17 +13,18 @@ let timer = {
     mode: 'pomodoro', // Added mode property
 };
 const fehBody = document.body
-const workDurationInput = document.getElementById('work-duration');
-const restDurationInput = document.getElementById('rest-duration');
+const pomodoroDurationInput = document.getElementById('pomodoro-duration');
+const shortRestDurationInput = document.getElementById('short-rest-duration');
+const longRestDurationInput = document.getElementById('long-rest-duration');
 const timerTime = document.getElementById('feh-timer-time');
-const circleProgress = document.querySelector('.circle-progress');
 const completedSessionsElement = document.getElementById('feh-completed-sessions');
 
 
 let completedSessions = 0;
-let workDuration = parseInt(workDurationInput.value) * 60;
-let restDuration = parseInt(restDurationInput.value) * 60;
-let remainingTime = workDuration;
+let pomodoroDuration = parseInt(pomodoroDurationInput.value) * 60;
+let shortRestDuration = parseInt(shortRestDurationInput.value) * 60;
+let longRestDuration = parseInt(longRestDurationInput.value) * 60;
+let remainingTime = pomodoroDuration;
 
 
 const btnToggleSettings = document.getElementById('feh-toggle-settings');
@@ -46,35 +47,24 @@ btnToggleSettings.addEventListener('click',toggleSettings);
 btnCloseSettings.addEventListener('click',toggleSettings);
 document.addEventListener('keydown',toggleSettings);
 
-// work / rest settings
-// workDurationInput.addEventListener('change', () => {
-//     workDuration = parseInt(workDurationInput.value) * 60;
-//     remainingTime = workDuration;
-//     updateClock();
-// });
 
-// restDurationInput.addEventListener('change', () => {
-//     restDuration = parseInt(restDurationInput.value) * 60;
-//     remainingTime = restDuration;
-//     updateClock();
-// });
-
-workDurationInput.addEventListener('change', () => {
-    const newWorkDuration = parseInt(workDurationInput.value) * 60;
-    timer.pomodoro = newWorkDuration / 60; // Convert back to minutes
+// Pomodoro
+pomodoroDurationInput.addEventListener('change', () => { 
+    const newPomodoroDuration = parseInt(pomodoroDurationInput.value) * 60;
+    timer.pomodoro = newPomodoroDuration / 60; // Convert back to minutes
     timer.remainingTime = {
-        total: newWorkDuration,
+        total: newPomodoroDuration,
         minutes: timer.pomodoro,
         seconds: 0,
     };
     updateClock();
 });
-
-restDurationInput.addEventListener('change', () => {
-    const newRestDuration = parseInt(restDurationInput.value) * 60;
-    timer.shortBreak = newRestDuration / 60; // Convert back to minutes
+//Short Break
+shortRestDurationInput.addEventListener('change', () => {
+    const newShortRestDuration = parseInt(shortRestDurationInput.value) * 60;
+    timer.shortBreak = newShortRestDuration / 60; // Convert back to minutes
     timer.remainingTime = {
-        total: newRestDuration,
+        total: newShortRestDuration,
         minutes: timer.shortBreak,
         seconds: 0,
     };
@@ -82,8 +72,17 @@ restDurationInput.addEventListener('change', () => {
 });
 
 
-// 
-
+// long Break
+longRestDurationInput.addEventListener('change', () => {
+    const newLongRestDuration = parseInt(longRestDurationInput.value) * 60;
+    timer.longBreak = newLongRestDuration / 60; // Convert back to minutes
+    timer.remainingTime = {
+        total: newLongRestDuration,
+        minutes: timer.longBreak,
+        seconds: 0,
+    };
+    updateClock();
+});
 
 // circle variables
 const semicircles = document.querySelectorAll('.semicircle');

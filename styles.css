@@ -131,8 +131,8 @@ button:focus, button:active {
 }
 
 .circle-container{
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -170,8 +170,8 @@ button:focus, button:active {
 }
 
 .outermost-circle{
-  width: 580px;
-  height: 580px;
+  width: 780px;
+  height: 780px;
   background-color:rgb(88, 27, 27);
   /* change background color to white again */
   border-radius: 50%;
@@ -265,12 +265,12 @@ button:focus, button:active {
   /* settings */
     #feh-timer-settings{
       transition: all 0.3s ease-in-out;
-      opacity: 0;
-      visibility: hidden;
+      /* opacity: 0;
+      visibility: hidden; */
       
     }
       #feh-close-settings{
-        top: -45px;
+        top: -86px;
         height: 80px;
       }
 
@@ -293,7 +293,7 @@ button:focus, button:active {
           margin-top: 10px;
         }
         .feh-timer-line:last-child{
-          margin-top: 20px;
+          margin-top: 10px;
         }
           .feh-timer-line * {
             font-size: 18px;
@@ -301,7 +301,7 @@ button:focus, button:active {
           .feh-timer-line label {
             width: 50%;
             color: #ffffffc7;
-            padding: 10px 0 10px 0;
+            padding: 0px 0 10px 0;
           }
           .feh-timer-line input {
             width: 50%;
