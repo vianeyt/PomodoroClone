@@ -70,7 +70,7 @@ progress::-webkit-progress-value {
 }
 
 .clock {
-  margin-top: 50px;
+  margin-top: 0px;
   margin-bottom: 30px;
   font-size: 13rem;
   line-height: 1;
@@ -185,11 +185,11 @@ button:focus, button:active {
   max-width: 350px;
   margin: 0 auto;
   padding: 55px 25px 25px 25px;
-  border-radius: 20px;
+  /* border-radius: 20px;
   background: rgba(255, 255, 255, 0.29);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.7px);
-  border: 1px solid rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(255, 255, 255, 0.64); */
 }
 
 .btn-icon {
@@ -265,8 +265,8 @@ button:focus, button:active {
   /* settings */
     #feh-timer-settings{
       transition: all 0.3s ease-in-out;
-      /* opacity: 0;
-      visibility: hidden; */
+      opacity: 0;
+      visibility: hidden;
       
     }
       #feh-close-settings{

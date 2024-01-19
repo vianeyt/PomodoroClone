@@ -125,8 +125,6 @@ function switchMode(mode){
     document.querySelectorAll('button[data-mode]').forEach(e => e.classList.remove('active'));
     document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
     document.body.style.backgroundColor = `var(--${mode})`;
-    document.getElementById('js-progress').setAttribute('max',timer.remainingTime.total);
-
     updateClock();
 }
 
@@ -208,10 +206,6 @@ function updateClock(){
 
     const text = timer.mode == 'pomodoro' ? 'Get back to work!' : 'Take a break!'; //ternary operator, condition ? expression to execute if truth : expression to execute if false
     document.title = `${minutes}:${seconds} - ${text}`;
-// in charge of updating the progress bar upper part of page
-    const progress = document.getElementById('js-progress');
-    progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
-// initial progress bar ^^
 
 
 // circular progress bar 
