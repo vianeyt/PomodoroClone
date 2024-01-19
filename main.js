@@ -147,8 +147,6 @@ function startTimer(){
     const endTime = Date.parse(new Date()) + total * 1000;
 
     if(timer.mode === 'pomodoro') timer.session++; //increments the sessions count at the start of each pomodoro session
-    // completedSessions++;
-    // completedSessionsElement.textContent = completedSessions;
 
     mainButton.dataset.action = 'stop';
     mainButton.textContent = 'stop';
@@ -166,7 +164,7 @@ function startTimer(){
 
             switch (timer.mode) { //depending on the value of timer.mode we will either go on a long brea or short break
                 case 'pomodoro':
-                    if(timer.sessions % timer.longBreakInterval === 0){
+                    if(timer.session % timer.longBreakInterval === 0){
                         switchMode('longBreak');
                     } else {
                         switchMode('shortBreak');
